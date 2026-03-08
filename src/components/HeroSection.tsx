@@ -1,7 +1,7 @@
 const HeroSection = () => {
   return (
     <section className="min-h-screen flex items-center px-6 md:px-16 lg:px-24 py-[var(--spacing-section)]">
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-[var(--spacing-section)] items-center">
+      <div className="w-full max-w-4xl mx-auto items-center">
 
         {/* Left — Text content */}
         <div className="space-y-[var(--spacing-element)]">
