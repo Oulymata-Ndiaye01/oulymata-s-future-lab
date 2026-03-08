@@ -1,7 +1,7 @@
 const HeroSection = () => {
   return (
     <section className="min-h-screen flex items-center px-6 md:px-16 lg:px-24 py-[var(--spacing-section)]">
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-[var(--spacing-section)] items-center">
+      <div className="w-full max-w-4xl mx-auto items-center">
 
         {/* Left — Text content */}
         <div className="space-y-[var(--spacing-element)]">
@@ -37,20 +37,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right — Photo placeholder */}
-        <div className="animate-fade-in-right flex flex-col items-center lg:items-end gap-4">
-          <div
-            className="w-full max-w-sm aspect-[3/4] bg-secondary border-[var(--border-thick)] border-foreground flex items-center justify-center overflow-hidden"
-            style={{ borderRadius: "var(--photo-radius)" }}
-          >
-            <span className="text-muted-foreground text-sm tracking-wide uppercase select-none">
-              Votre photo ici
-            </span>
-          </div>
-          <span className="text-xs text-muted-foreground italic">
-            Oulymata Ndiaye — Portfolio 2026
-          </span>
-        </div>
       </div>
     </section>
   );
