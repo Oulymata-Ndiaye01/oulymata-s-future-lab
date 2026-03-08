@@ -37,20 +37,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right — Photo placeholder */}
-        <div className="animate-fade-in-right flex flex-col items-center lg:items-end gap-4">
-          <div
-            className="w-full max-w-sm aspect-[3/4] bg-secondary border-[var(--border-thick)] border-foreground flex items-center justify-center overflow-hidden"
-            style={{ borderRadius: "var(--photo-radius)" }}
-          >
-            <span className="text-muted-foreground text-sm tracking-wide uppercase select-none">
-              Votre photo ici
-            </span>
-          </div>
-          <span className="text-xs text-muted-foreground italic">
-            Oulymata Ndiaye — Portfolio 2026
-          </span>
-        </div>
       </div>
     </section>
   );
