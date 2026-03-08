@@ -9,7 +9,7 @@ const HeroSection = () => {
           {/* Tag */}
           <div className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 mb-8">
             <span className="h-2 w-2 rounded-full bg-accent animate-pulse-glow" />
-            <span className="text-sm font-mono-code text-accent">Frontend Developer Student</span>
+            <span className="text-sm font-mono-code text-accent">Étudiante Développeuse Frontend</span>
           </div>
 
           {/* Name */}
