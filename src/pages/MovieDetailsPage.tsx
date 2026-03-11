@@ -59,6 +59,10 @@ const MovieDetailsPage = () => {
                 src={movie.poster}
                 alt={movie.title}
                 className="w-full h-auto"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = `https://via.placeholder.com/500x750/1a1a2e/7c3aed?text=${encodeURIComponent(movie.title)}`;
+                }}
               />
             </div>
           </div>
