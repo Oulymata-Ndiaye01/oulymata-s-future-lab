@@ -1,3 +1,5 @@
+export type Mood = "popcorn" | "adrenaline" | "emotional" | "mindblowing" | "escape";
+
 export interface Movie {
   id: number;
   title: string;
@@ -9,7 +11,16 @@ export interface Movie {
   poster: string;
   backdrop: string;
   trailerUrl: string;
+  moods: Mood[];
 }
+
+export const moodConfig: Record<Mood, { emoji: string; label: string; color: string }> = {
+  popcorn: { emoji: "🍿", label: "Popcorn & Chill", color: "from-amber-500 to-orange-500" },
+  adrenaline: { emoji: "🔥", label: "Adrénaline", color: "from-red-500 to-rose-600" },
+  emotional: { emoji: "😭", label: "Besoin de pleurer", color: "from-blue-400 to-indigo-500" },
+  mindblowing: { emoji: "🧠", label: "Mind-blowing", color: "from-purple-500 to-fuchsia-500" },
+  escape: { emoji: "🌌", label: "Évasion", color: "from-cyan-400 to-teal-500" },
+};
 
 export const movies: Movie[] = [
   {
@@ -23,6 +34,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/sAtoMqDVhNDQBc3QJL3RF6hlhGq.jpg",
     trailerUrl: "https://www.youtube.com/embed/gCcx85e3-14",
+    moods: ["mindblowing", "escape"],
   },
   {
     id: 2,
@@ -35,6 +47,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/xJHokMbljvjADYdit5fK1DVfjko.jpg",
     trailerUrl: "https://www.youtube.com/embed/zSWdZVtXT7E",
+    moods: ["emotional", "mindblowing", "escape"],
   },
   {
     id: 3,
@@ -47,6 +60,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911BTUgMe1nNaD3.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/nMKdUUepR0i5zn0y1T4CsSB5ez.jpg",
     trailerUrl: "https://www.youtube.com/embed/EXeTwQWrcwY",
+    moods: ["adrenaline", "mindblowing"],
   },
   {
     id: 4,
@@ -59,6 +73,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
     trailerUrl: "https://www.youtube.com/embed/YoHD9XEInc0",
+    moods: ["mindblowing", "adrenaline"],
   },
   {
     id: 5,
@@ -71,6 +86,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg",
     trailerUrl: "https://www.youtube.com/embed/n9xhJrPXop4",
+    moods: ["escape", "adrenaline"],
   },
   {
     id: 6,
@@ -83,6 +99,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/fNG7i7RqMErkcqhohV2a6cV1Ehy.jpg",
     trailerUrl: "https://www.youtube.com/embed/vKQi3bBA1y8",
+    moods: ["mindblowing", "adrenaline"],
   },
   {
     id: 7,
@@ -95,6 +112,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/umC04Coze2VohNfG7wSVgjnOGS5.jpg",
     trailerUrl: "https://www.youtube.com/embed/C0BMx-qxsP4",
+    moods: ["adrenaline", "popcorn"],
   },
   {
     id: 8,
@@ -107,6 +125,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/aUVCJ0HkcJIBrFWlqMOO3dLMSQl.jpg",
     trailerUrl: "https://www.youtube.com/embed/g4Hbz2jLxvQ",
+    moods: ["popcorn", "adrenaline", "escape"],
   },
   {
     id: 9,
@@ -119,6 +138,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg",
     trailerUrl: "https://www.youtube.com/embed/5xH0HfJHsaY",
+    moods: ["mindblowing", "emotional"],
   },
   {
     id: 10,
@@ -131,6 +151,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
     trailerUrl: "https://www.youtube.com/embed/TcMBFSGVi1c",
+    moods: ["popcorn", "adrenaline", "emotional"],
   },
   {
     id: 11,
@@ -143,6 +164,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/nb3xI8XI3w4pMVZ38VijbsyBqP4.jpg",
     trailerUrl: "https://www.youtube.com/embed/uYPbbksJxIg",
+    moods: ["mindblowing", "emotional"],
   },
   {
     id: 12,
@@ -155,6 +177,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/feSiISwgEpVzR1v3zv2n2AU4ANJ.jpg",
     trailerUrl: "https://www.youtube.com/embed/wxN1T1qdQ9Y",
+    moods: ["mindblowing", "emotional", "popcorn"],
   },
   {
     id: 13,
@@ -167,6 +190,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",
     trailerUrl: "https://www.youtube.com/embed/UaVTIH8mujA",
+    moods: ["mindblowing", "emotional"],
   },
   {
     id: 14,
@@ -179,6 +203,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/hZkgoQYus5dXo3H8T7CYV1zORua.jpg",
     trailerUrl: "https://www.youtube.com/embed/qtRKdVHc-cE",
+    moods: ["mindblowing", "adrenaline"],
   },
   {
     id: 15,
@@ -191,6 +216,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
     trailerUrl: "https://www.youtube.com/embed/s7EdQ4FqbhY",
+    moods: ["popcorn", "mindblowing"],
   },
   {
     id: 16,
@@ -203,6 +229,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/9cjIGRSQL0wMSMiAXyVsqMITKID.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg",
     trailerUrl: "https://www.youtube.com/embed/6hB3S9bIaco",
+    moods: ["emotional", "mindblowing"],
   },
   {
     id: 17,
@@ -215,6 +242,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/cqa3sa4c4jevgnEJwq3VU3dOg2C.jpg",
     trailerUrl: "https://www.youtube.com/embed/d96cjJhvlMA",
+    moods: ["popcorn", "escape", "adrenaline"],
   },
   {
     id: 18,
@@ -227,6 +255,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/6bbZ6XyvgfjhQwbplnUh1LSj1ky.jpg",
     trailerUrl: "https://www.youtube.com/embed/7d_jQycdQGo",
+    moods: ["adrenaline", "emotional"],
   },
   {
     id: 19,
@@ -239,6 +268,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/phszHPFVhPHhMZgo0fWTKBDQsJA.jpg",
     trailerUrl: "https://www.youtube.com/embed/hEJnMQG9ev8",
+    moods: ["adrenaline", "escape"],
   },
   {
     id: 20,
@@ -251,6 +281,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/n6bUvigpRFqSwmPp1m2YMDNkGkt.jpg",
     trailerUrl: "https://www.youtube.com/embed/zAGVQLHvwOY",
+    moods: ["emotional", "mindblowing"],
   },
   {
     id: 21,
@@ -263,6 +294,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/56v2KjBlYj8Hy0G3iwFMfNgMUhB.jpg",
     trailerUrl: "https://www.youtube.com/embed/b9EkMc79ZSU",
+    moods: ["escape", "adrenaline", "emotional"],
   },
   {
     id: 22,
@@ -275,6 +307,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg",
     trailerUrl: "https://www.youtube.com/embed/HhesaQXLuRY",
+    moods: ["adrenaline", "mindblowing", "emotional"],
   },
   {
     id: 23,
@@ -287,6 +320,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0GlqHrcdiJq.jpg",
     trailerUrl: "https://www.youtube.com/embed/ndl1W4ltcmg",
+    moods: ["escape", "adrenaline"],
   },
   {
     id: 24,
@@ -299,6 +333,7 @@ export const movies: Movie[] = [
     poster: "https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg",
     backdrop: "https://image.tmdb.org/t/p/original/qw3J9cNeLioOLoR68WX7z79aCdK.jpg",
     trailerUrl: "https://www.youtube.com/embed/oqxAJKy0ii4",
+    moods: ["adrenaline", "mindblowing"],
   },
 ];
 

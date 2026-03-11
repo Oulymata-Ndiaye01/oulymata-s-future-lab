@@ -1,113 +1,159 @@
-import { Link } from "react-router-dom";
-import { Play, Sparkles, TrendingUp } from "lucide-react";
-import { movies } from "@/data/movies";
+import { useState, useMemo, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, Sparkles } from "lucide-react";
+import { movies, Mood } from "@/data/movies";
 import MovieCard from "@/components/MovieCard";
+import MoodFilter from "@/components/MoodFilter";
+import TrendingCarousel from "@/components/TrendingCarousel";
+import MovieDetailModal from "@/components/MovieDetailModal";
 import { useFavorites } from "@/hooks/useFavorites";
+import { Movie } from "@/data/movies";
 
 const HomePage = () => {
   const { isFavorite, toggleFavorite } = useFavorites();
-  const featured = movies.slice(0, 3);
-  const trending = movies.slice(3, 9);
+  const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
+  const [search, setSearch] = useState("");
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-  /* Pick a random movie for the hero */
-  const hero = movies[0];
+  const trending = useMemo(() => {
+    return [...movies].sort((a, b) => b.rating - a.rating).slice(0, 10);
+  }, []);
+
+  const filtered = useMemo(() => {
+    let result = movies;
+    if (selectedMood) {
+      result = result.filter((m) => m.moods.includes(selectedMood));
+    }
+    if (search) {
+      const q = search.toLowerCase();
+      result = result.filter(
+        (m) =>
+          m.title.toLowerCase().includes(q) ||
+          m.genre.toLowerCase().includes(q) ||
+          m.actors.some((a) => a.toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [selectedMood, search]);
+
+  const handleMovieClick = useCallback((movie: Movie) => {
+    setSelectedMovie(movie);
+  }, []);
 
   return (
     <div className="min-h-screen pt-16">
-      {/* ── Hero ── */}
-      <section className="relative min-h-[90vh] flex items-center hero-gradient overflow-hidden">
-        {/* Background image */}
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url(${hero.backdrop})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+      {/* Hero */}
+      <section className="relative hero-gradient overflow-hidden py-16 sm:py-24">
+        <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-primary/10 blur-[100px] animate-float" />
+        <div className="absolute bottom-10 left-20 w-48 h-48 rounded-full bg-accent/10 blur-[80px] animate-float" style={{ animationDelay: "1s" }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="max-w-2xl space-y-6">
-            <div className="animate-fade-in-up flex items-center gap-2">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <div className="flex items-center justify-center gap-2 mb-4">
               <Sparkles className="w-5 h-5 text-primary" />
               <span className="text-sm font-medium text-primary tracking-widest uppercase font-display">
-                Featured
+                Quel est ton mood ?
               </span>
             </div>
-
             <h1
-              className="animate-fade-in-up-d1 font-display font-black text-foreground leading-[1.05] tracking-tight"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+              className="font-display font-black text-foreground leading-[1.05] tracking-tight mb-4"
+              style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
             >
-              <span className="gradient-text">NEON</span>FLIX
+              <span className="gradient-text">CINE</span>MOOD
             </h1>
-
-            <p className="animate-fade-in-up-d2 text-lg text-muted-foreground max-w-lg leading-relaxed">
-              Dive into a futuristic cinema experience. Explore blockbusters, hidden gems, and
-              timeless classics — all in one stunning platform.
+            <p className="text-muted-foreground max-w-lg mx-auto leading-relaxed">
+              Choisis ton humeur, découvre ton film. Une expérience cinéma personnalisée et immersive.
             </p>
+          </motion.div>
 
-            <div className="animate-fade-in-up-d3 flex flex-wrap gap-4">
-              <Link
-                to="/movies"
-                className="neon-glow-btn inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold text-sm px-7 py-3.5 rounded-xl"
-              >
-                <Play className="w-4 h-4" />
-                Browse Movies
-              </Link>
-              <Link
-                to={`/movie/${hero.id}`}
-                className="inline-flex items-center gap-2 border border-border text-foreground font-semibold text-sm px-7 py-3.5 rounded-xl transition-all hover:bg-secondary"
-              >
-                Watch {hero.title}
-              </Link>
+          {/* Floating search bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="max-w-xl mx-auto mb-10"
+          >
+            <div className="relative">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Rechercher un film, genre, acteur…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-13 pr-5 py-4 rounded-2xl glass text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              />
             </div>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Decorative orbs */}
-        <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-primary/10 blur-[100px] animate-float" />
-        <div className="absolute bottom-10 right-40 w-48 h-48 rounded-full bg-accent/10 blur-[80px] animate-float" style={{ animationDelay: "1s" }} />
-      </section>
-
-      {/* ── Featured Movies ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="flex items-center gap-3 mb-10">
-          <Sparkles className="w-6 h-6 text-primary" />
-          <h2 className="font-display font-bold text-2xl gradient-text">Featured</h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featured.map((m) => (
-            <MovieCard
-              key={m.id}
-              movie={m}
-              isFavorite={isFavorite(m.id)}
-              onToggleFavorite={toggleFavorite}
-            />
-          ))}
+          {/* Mood filter */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <MoodFilter selectedMood={selectedMood} onSelect={setSelectedMood} />
+          </motion.div>
         </div>
       </section>
 
-      {/* ── Trending ── */}
+      {/* Trending carousel */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <TrendingCarousel movies={trending} onMovieClick={handleMovieClick} />
+      </section>
+
+      {/* Movie grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="flex items-center gap-3 mb-10">
-          <TrendingUp className="w-6 h-6 text-accent" />
-          <h2 className="font-display font-bold text-2xl neon-text-cyan" style={{ WebkitTextFillColor: "unset", color: "hsl(var(--accent))" }}>
-            Trending Now
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="font-display font-bold text-xl gradient-text">
+            {selectedMood ? `Mood : ${selectedMood}` : "Tous les films"}
           </h2>
+          <span className="text-sm text-muted-foreground">
+            {filtered.length} film{filtered.length !== 1 ? "s" : ""}
+          </span>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {trending.map((m) => (
-            <MovieCard
-              key={m.id}
-              movie={m}
-              isFavorite={isFavorite(m.id)}
-              onToggleFavorite={toggleFavorite}
-            />
-          ))}
-        </div>
+
+        <AnimatePresence mode="popLayout">
+          {filtered.length > 0 ? (
+            <motion.div
+              layout
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"
+            >
+              {filtered.map((m) => (
+                <MovieCard
+                  key={m.id}
+                  movie={m}
+                  isFavorite={isFavorite(m.id)}
+                  onToggleFavorite={toggleFavorite}
+                  onClick={() => handleMovieClick(m)}
+                />
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20"
+            >
+              <p className="text-muted-foreground text-lg">Aucun film trouvé.</p>
+              <p className="text-muted-foreground text-sm mt-2">Essaie un autre mood ou mot-clé.</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </section>
+
+      {/* Movie detail modal */}
+      <MovieDetailModal
+        movie={selectedMovie}
+        isOpen={!!selectedMovie}
+        onClose={() => setSelectedMovie(null)}
+        isFavorite={selectedMovie ? isFavorite(selectedMovie.id) : false}
+        onToggleFavorite={toggleFavorite}
+      />
     </div>
   );
 };
