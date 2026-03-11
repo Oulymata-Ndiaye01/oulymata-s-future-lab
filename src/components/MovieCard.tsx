@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Heart, Star } from "lucide-react";
 import { Movie } from "@/data/movies";
 
@@ -6,11 +6,19 @@ interface MovieCardProps {
   movie: Movie;
   isFavorite: boolean;
   onToggleFavorite: (id: number) => void;
+  onClick?: () => void;
 }
 
-const MovieCard = ({ movie, isFavorite, onToggleFavorite }: MovieCardProps) => {
+const MovieCard = ({ movie, isFavorite, onToggleFavorite, onClick }: MovieCardProps) => {
   return (
-    <div className="glass-card group relative overflow-hidden">
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      className="glass-card group relative overflow-hidden cursor-pointer"
+      onClick={onClick}
+    >
       {/* Poster */}
       <div className="poster-zoom relative aspect-[2/3]">
         <img
@@ -19,24 +27,20 @@ const MovieCard = ({ movie, isFavorite, onToggleFavorite }: MovieCardProps) => {
           className="w-full h-full object-cover"
           loading="lazy"
           onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = `https://via.placeholder.com/500x750/1a1a2e/7c3aed?text=${encodeURIComponent(movie.title)}`;
+            (e.target as HTMLImageElement).src = `https://via.placeholder.com/500x750/1a1a2e/7c3aed?text=${encodeURIComponent(movie.title)}`;
           }}
         />
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-4">
-          <Link
-            to={`/movie/${movie.id}`}
-            className="neon-glow-btn bg-primary text-primary-foreground text-sm font-semibold py-2.5 px-5 rounded-lg text-center"
-          >
-            View Details
-          </Link>
+          <span className="neon-glow-btn bg-primary text-primary-foreground text-sm font-semibold py-2.5 px-5 rounded-lg text-center">
+            Voir Détails
+          </span>
         </div>
 
         {/* Favorite button */}
         <button
           onClick={(e) => {
-            e.preventDefault();
+            e.stopPropagation();
             onToggleFavorite(movie.id);
           }}
           className="absolute top-3 right-3 p-2 rounded-full glass transition-all duration-300 hover:scale-110 z-10"
@@ -65,7 +69,7 @@ const MovieCard = ({ movie, isFavorite, onToggleFavorite }: MovieCardProps) => {
         </div>
         <p className="text-xs text-muted-foreground">{movie.year}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Film, Heart, Home, Mail, Clapperboard, Menu, X } from "lucide-react";
+import { Heart, Home, Mail, Clapperboard, Menu, X, Popcorn } from "lucide-react";
 
 const navLinks = [
   { to: "/", label: "Home", icon: Home },
-  { to: "/movies", label: "Movies", icon: Clapperboard },
-  { to: "/favorites", label: "Favorites", icon: Heart },
+  { to: "/movies", label: "Explorer", icon: Clapperboard },
+  { to: "/favorites", label: "Favoris", icon: Heart },
   { to: "/contact", label: "Contact", icon: Mail },
 ];
 
@@ -19,9 +19,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <Film className="w-7 h-7 text-primary transition-all group-hover:drop-shadow-[0_0_8px_hsl(270,100%,65%)]" />
+            <Popcorn className="w-7 h-7 text-primary transition-all group-hover:drop-shadow-[0_0_8px_hsl(270,100%,65%)]" />
             <span className="font-display font-bold text-lg gradient-text tracking-wider">
-              NEONFLIX
+              CINEMOOD
             </span>
           </Link>
 
