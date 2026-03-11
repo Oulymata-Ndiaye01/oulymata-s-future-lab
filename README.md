@@ -36,4 +36,5 @@ Ce projet a été réalisé en mode **"AI-First"**, en utilisant les outils les 
 ## 📦 Installation et Lancement
 1. **Cloner le dépôt :**
    ```bash
-   git clone [https://github.com/TON_PSEUDO/cinemood.git](https://github.com/TON_PSEUDO/cinemood.git)
+   git clone [https://github.com/TON_PSEUDO/cinemood.git](https://github.com/
+Oulymata-Ndiaye01/cinemood.git)
