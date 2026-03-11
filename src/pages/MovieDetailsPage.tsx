@@ -31,6 +31,10 @@ const MovieDetailsPage = () => {
           src={movie.backdrop}
           alt={movie.title}
           className="w-full h-full object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = `https://via.placeholder.com/1920x800/1a1a2e/7c3aed?text=${encodeURIComponent(movie.title)}`;
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent" />
