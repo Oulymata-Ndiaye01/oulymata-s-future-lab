@@ -18,6 +18,10 @@ const MovieCard = ({ movie, isFavorite, onToggleFavorite }: MovieCardProps) => {
           alt={movie.title}
           className="w-full h-full object-cover"
           loading="lazy"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = `https://via.placeholder.com/500x750/1a1a2e/7c3aed?text=${encodeURIComponent(movie.title)}`;
+          }}
         />
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-4">
