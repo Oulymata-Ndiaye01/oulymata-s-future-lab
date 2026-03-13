@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Heart, Home, Mail, Clapperboard, Menu, X, Popcorn } from "lucide-react";
+import { Home, Calculator, SmilePlus, BookHeart, Mail, Menu, X, Heart } from "lucide-react";
 
 const navLinks = [
-  { to: "/", label: "Home", icon: Home },
-  { to: "/movies", label: "Explorer", icon: Clapperboard },
-  { to: "/favorites", label: "Favoris", icon: Heart },
+  { to: "/", label: "Accueil", icon: Home },
+  { to: "/cycle", label: "Mon Cycle", icon: Calculator },
+  { to: "/mood", label: "Humeur", icon: SmilePlus },
+  { to: "/tips", label: "Conseils", icon: BookHeart },
   { to: "/contact", label: "Contact", icon: Mail },
 ];
 
@@ -14,18 +15,16 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-xl border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <Popcorn className="w-7 h-7 text-primary transition-all group-hover:drop-shadow-[0_0_8px_hsl(270,100%,65%)]" />
-            <span className="font-display font-bold text-lg gradient-text tracking-wider">
-              CINEMOOD
+            <Heart className="w-6 h-6 text-primary transition-all group-hover:scale-110" />
+            <span className="font-display font-bold text-xl gradient-text">
+              FlowCare
             </span>
           </Link>
 
-          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map(({ to, label, icon: Icon }) => {
               const active = location.pathname === to;
@@ -33,9 +32,9 @@ const Navbar = () => {
                 <Link
                   key={to}
                   to={to}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     active
-                      ? "bg-primary/20 text-primary neon-text"
+                      ? "bg-primary/15 text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                   }`}
                 >
@@ -46,7 +45,6 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* Mobile toggle */}
           <button
             className="md:hidden text-foreground p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -56,9 +54,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden glass border-t border-border animate-fade-in-up">
+        <div className="md:hidden bg-card/95 backdrop-blur-xl border-t border-border animate-fade-in-up">
           <div className="px-4 py-3 space-y-1">
             {navLinks.map(({ to, label, icon: Icon }) => {
               const active = location.pathname === to;
@@ -67,9 +64,9 @@ const Navbar = () => {
                   key={to}
                   to={to}
                   onClick={() => setMobileOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                     active
-                      ? "bg-primary/20 text-primary"
+                      ? "bg-primary/15 text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                   }`}
                 >
