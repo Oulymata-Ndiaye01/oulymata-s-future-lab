@@ -1,40 +1,72 @@
-# 🎬 CineMood : L'Explorateur de Films par Émotion
+# FlowCare 🌸
 
-> **"Ne cherchez plus un film, trouvez votre émotion."** > CineMood est une application web immersive qui réinvente la découverte cinématographique en suggérant des films basés sur l'humeur de l'utilisateur, propulsée par l'intelligence artificielle.
+## Description
+
+FlowCare est une application web qui aide les femmes à suivre leur cycle menstruel et à mieux comprendre leur bien-être physique et émotionnel.
+
+L’application permet aux utilisatrices d’entrer la date de leurs dernières règles et la durée moyenne de leur cycle afin de calculer automatiquement :
+
+* la prochaine date estimée des règles
+* la période d’ovulation
+* la fenêtre de fertilité
+
+Le site propose également un espace interactif où les utilisatrices peuvent partager leur humeur et écrire un message pour exprimer comment elles se sentent.
+
+Une section dédiée aux conseils fournit également des informations utiles sur la santé féminine, la nutrition pendant le cycle menstruel et le bien-être mental.
+
+L’objectif de FlowCare est de créer un outil simple, moderne et accessible qui aide les femmes à mieux comprendre leur cycle menstruel.
 
 ---
 
-## ✨ Le Concept
-CineMood sort de l'ordinaire des applications de cinéma classiques. Au lieu d'une simple barre de recherche, l'utilisateur interagit avec une interface intuitive basée sur des "Moods" (Humeurs) :
-* 🍿 **Popcorn & Chill** (Détente)
-* 🔥 **Adrénaline** (Action/Thriller)
-* 🧠 **Mind-Blowing** (Science-fiction/Mystère)
-* 🌌 **Évasion** (Aventure/Fantaisie)
+## Fonctionnalités
 
-## 🚀 Fonctionnalités
-- **Filtrage Dynamique :** Explorez des films selon votre état d'esprit actuel.
-- **Interface Glassmorphism :** Un design moderne avec des effets de transparence et des animations fluides.
-- **Détails Immersifs :** Accès aux synopsis, notes et genres pour chaque film.
-- **Responsive Design :** Optimisé pour mobile, tablette et desktop.
+* Calculateur du cycle menstruel
+* Estimation des prochaines règles
+* Identification de la période d’ovulation
+* Fenêtre de fertilité
+* Sélection d’humeur avec emojis
+* Espace de discussion interactif
+* Page de conseils sur la santé des femmes
+* Formulaire de contact
 
-## 🛠️ Stack Technique & Outils IA
-Ce projet a été réalisé en mode **"AI-First"**, en utilisant les outils les plus avancés du marché :
+---
 
-| Technologie / Outil | Utilisation |
-| :--- | :--- |
-| **React + Vite** | Framework Frontend |
-| **Tailwind CSS** | Styling & Design System |
-| **Lucide React** | Bibliothèque d'icônes minimalistes |
-| **Lovable.ai** | Génération de l'interface et du code source |
-| **Gemini 3 Flash** | Architecture du projet et rédaction technique |
+## Technologies utilisées
 
-## 📝 Spécifications du Projet
-* **Objectif :** Créer une application de découverte de films interactive et esthétique.
-* **Public cible :** Amateurs de cinéma indécis.
-* **Contraintes respectées :** Code modulaire, déploiement automatisé via GitHub Pages, README documenté par IA.
+Le projet utilise des technologies modernes de développement web :
 
-## 📦 Installation et Lancement
-1. **Cloner le dépôt :**
-   ```bash
-   git clone [https://github.com/TON_PSEUDO/cinemood.git](https://github.com/
-Oulymata-Ndiaye01/cinemood.git)
+* **React** – pour la structure de l’interface utilisateur
+* **Tailwind CSS** – pour le design et la mise en page
+* **JavaScript / TypeScript** – pour la logique et les interactions
+* **Vite / Next.js** – pour la gestion et le développement de l’application
+
+---
+
+## Structure du site
+
+Le site contient plusieurs sections principales :
+
+* **Accueil** : présentation de FlowCare
+* **Calculateur de cycle** : calcul des règles et de l’ovulation
+* **Humeur & discussion** : espace pour partager son ressenti
+* **Conseils santé** : informations sur le cycle menstruel
+* **Contact** : formulaire de communication
+
+---
+
+## Objectif du projet
+
+Ce projet a été réalisé dans le cadre d’un projet académique afin de mettre en pratique les compétences en développement web moderne, notamment :
+
+* conception d’interfaces utilisateur modernes
+* création d’applications web interactives
+* gestion des interactions avec JavaScript
+
+---
+
+## Auteur
+
+Projet réalisé par
+**Oulymata Ndiaye**
+Étudiante en informatique – Développement web et mobile
+
